@@ -29,7 +29,6 @@ PRODUCT_PACKAGES += \
     DownloadProvider \
     ExtShared \
     ExtServices \
-    HTMLViewer \
     MediaProvider \
     PackageInstaller \
     SettingsProvider \
