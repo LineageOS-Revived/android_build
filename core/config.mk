@@ -643,12 +643,7 @@ HOST_JDK_IS_64BIT_VERSION := true
 endif
 endif  # CALLED_FROM_SETUP not true
 
-# It's called md5 on Mac OS and md5sum on Linux
-ifeq ($(HOST_OS),darwin)
-MD5SUM:=md5 -q
-else
-MD5SUM:=md5sum
-endif
+SHA256 := sha256sum
 
 APICHECK_CLASSPATH := $(HOST_JDK_TOOLS_JAR)
 APICHECK_CLASSPATH := $(APICHECK_CLASSPATH):$(HOST_OUT_JAVA_LIBRARIES)/doclava$(COMMON_JAVA_PACKAGE_SUFFIX)
