@@ -55,7 +55,6 @@ PRODUCT_PACKAGES += \
     ManagedProvisioning \
     MmsService \
     MtpService \
-    MusicFX \
     PacProcessor \
     PrintRecommendationService \
     PrintSpooler \

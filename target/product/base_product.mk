@@ -19,5 +19,4 @@ PRODUCT_PACKAGES += \
     group_product \
     ModuleMetadata \
     passwd_product \
-    product_compatibility_matrix.xml \
-    product_manifest.xml \
+    product_compatibility_matrix.xml
