@@ -2155,11 +2155,9 @@ $(if $(BOARD_$(_var)IMAGE_SQUASHFS_COMPRESSOR),$(hide) echo "$(1)_squashfs_compr
 $(if $(BOARD_$(_var)IMAGE_SQUASHFS_COMPRESSOR_OPT),$(hide) echo "$(1)_squashfs_compressor_opt=$(BOARD_$(_var)IMAGE_SQUASHFS_COMPRESSOR_OPT)" >> $(2))
 $(if $(BOARD_$(_var)IMAGE_SQUASHFS_DISABLE_4K_ALIGN),$(hide) echo "$(1)_squashfs_disable_4k_align=$(BOARD_$(_var)IMAGE_SQUASHFS_DISABLE_4K_ALIGN)" >> $(2))
 $(if $(PRODUCT_$(_var)_BASE_FS_PATH),$(hide) echo "$(1)_base_fs_file=$(PRODUCT_$(_var)_BASE_FS_PATH)" >> $(2))
-$(if $(filter true,$(AB_OTA_UPDATER)),,\
-    $(eval _size := $(BOARD_$(_var)IMAGE_PARTITION_SIZE))
-    $(eval _reserved := $(BOARD_$(_var)IMAGE_PARTITION_RESERVED_SIZE))
-    $(eval _headroom := $(PRODUCT_$(_var)_HEADROOM))
-)
+$(eval _size := $(BOARD_$(_var)IMAGE_PARTITION_SIZE))
+$(eval _reserved := $(BOARD_$(_var)IMAGE_PARTITION_RESERVED_SIZE))
+$(eval _headroom := $(PRODUCT_$(_var)_HEADROOM))
 $(if $(or $(_size), $(_reserved), $(_headroom)),,
     $(hide) echo "$(1)_disable_sparse=true" >> $(2))
 $(call add-common-flags-to-image-props,$(1),$(2))
@@ -6563,7 +6561,9 @@ ifdef BOARD_CUSTOM_BOOTIMG
 	@# Prebuilt boot images
 	$(hide) mkdir -p $(zip_root)/BOOTABLE_IMAGES
 	$(hide) $(ACP) $(INSTALLED_BOOTIMAGE_TARGET) $(zip_root)/BOOTABLE_IMAGES/
+ifneq ($(INSTALLED_RECOVERYIMAGE_TARGET),)
 	$(hide) $(ACP) $(INSTALLED_RECOVERYIMAGE_TARGET) $(zip_root)/BOOTABLE_IMAGES/
+endif
 endif
 ifdef BUILDING_SYSTEM_IMAGE
 	@# Contents of the system image
